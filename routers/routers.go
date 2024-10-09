@@ -8,10 +8,17 @@ import (
 
 func RegisterRoutes(router *mux.Router, db *gorm.DB) {
 	tourPackageController := controllers.NewTourPackageController(db)
+	tncController := controllers.NewTncController(db)
 
 	router.HandleFunc("/packages", tourPackageController.GetAll).Methods("GET")
 	router.HandleFunc("/packages/{id}", tourPackageController.GetByID).Methods("GET")
 	router.HandleFunc("/packages", tourPackageController.Create).Methods("POST")
 	router.HandleFunc("/packages/{id}", tourPackageController.Update).Methods("PUT")
 	router.HandleFunc("/packages/{id}", tourPackageController.Delete).Methods("DELETE")
+
+	router.HandleFunc("/tnc", tncController.GetAll).Methods("GET")
+	router.HandleFunc("/tnc/{id}", tncController.GetByID).Methods("GET")
+	router.HandleFunc("/tnc", tncController.Create).Methods("POST")
+	router.HandleFunc("/tnc/{id}", tncController.Update).Methods("PUT")
+	router.HandleFunc("/tnc/{id}", tncController.Delete).Methods("DELETE")
 }

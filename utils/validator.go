@@ -11,3 +11,7 @@ var validate = validator.New()
 func ValidateTourPackage(paket models.TourPackage) error {
 	return validate.Struct(paket)
 }
+
+func ValidateTnc(tnc models.Tnc) error {
+	return validate.Struct(tnc)
+}
