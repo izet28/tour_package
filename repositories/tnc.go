@@ -6,40 +6,40 @@ import (
 	"gorm.io/gorm"
 )
 
-type TourPackageRepository struct {
+type TncRepository struct {
 	DB *gorm.DB
 }
 
-func NewTourPackageRepository(db *gorm.DB) TourPackageRepository {
-	return TourPackageRepository{DB: db}
+func NewTncRepository(db *gorm.DB) TncRepository {
+	return TncRepository{DB: db}
 }
 
-func (r *TourPackageRepository) GetAll() ([]models.TourPackage, error) {
-	var packages []models.TourPackage
-	err := r.DB.Find(&packages).Error
-	return packages, err
+func (r *TncRepository) GetAll() ([]models.Tnc, error) {
+	var tncs []models.Tnc
+	err := r.DB.Find(&tncs).Error
+	return tncs, err
 }
 
-func (r *TourPackageRepository) GetByID(id int) (*models.TourPackage, error) {
-	var paket models.TourPackage
-	err := r.DB.First(&paket, id).Error
-	return &paket, err
+func (r *TncRepository) GetByID(id int) (*models.Tnc, error) {
+	var tnc models.Tnc
+	err := r.DB.First(&tnc, id).Error
+	return &tnc, err
 }
 
-func (r *TourPackageRepository) Create(paket models.TourPackage) (*models.TourPackage, error) {
-	err := r.DB.Create(&paket).Error
-	return &paket, err
+func (r *TncRepository) Create(tnc models.Tnc) (*models.Tnc, error) {
+	err := r.DB.Create(&tnc).Error
+	return &tnc, err
 }
 
-func (r *TourPackageRepository) Update(id int, updatedPackage models.TourPackage) (*models.TourPackage, error) {
-	var paket models.TourPackage
-	if err := r.DB.First(&paket, id).Error; err != nil {
+func (r *TncRepository) Update(id int, updatedPackage models.Tnc) (*models.Tnc, error) {
+	var tnc models.Tnc
+	if err := r.DB.First(&tnc, id).Error; err != nil {
 		return nil, err
 	}
-	r.DB.Model(&paket).Updates(updatedPackage)
-	return &paket, nil
+	r.DB.Model(&tnc).Updates(updatedPackage)
+	return &tnc, nil
 }
 
-func (r *TourPackageRepository) Delete(id int) error {
-	return r.DB.Delete(&models.TourPackage{}, id).Error
+func (r *TncRepository) Delete(id int) error {
+	return r.DB.Delete(&models.Tnc{}, id).Error
 }

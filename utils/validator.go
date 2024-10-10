@@ -15,3 +15,6 @@ func ValidateTourPackage(paket models.TourPackage) error {
 func ValidateTnc(tnc models.Tnc) error {
 	return validate.Struct(tnc)
 }
+func ValidateDestination(destination models.Destination) error {
+	return validate.Struct(destination)
+}

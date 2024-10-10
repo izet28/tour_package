@@ -17,7 +17,7 @@ func main() {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 
-	err = db.AutoMigrate(&models.TourPackage{}, &models.Itinerary{}, &models.Tnc{})
+	err = db.AutoMigrate(&models.TourPackage{}, &models.Itinerary{}, &models.Tnc{}, &models.Destination{})
 	if err != nil {
 		log.Fatal("Gagal melakukan migrasi database: %v", err)
 	}
