@@ -18,3 +18,6 @@ func ValidateTnc(tnc models.Tnc) error {
 func ValidateDestination(destination models.Destination) error {
 	return validate.Struct(destination)
 }
+func ValidateItinerary(itinerary models.Itinerary) error {
+	return validate.Struct(itinerary)
+}

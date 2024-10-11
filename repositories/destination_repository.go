@@ -16,13 +16,14 @@ func NewDestinationRepository(db *gorm.DB) DestinationRepository {
 
 func (r *DestinationRepository) GetAll() ([]models.Destination, error) {
 	var destinations []models.Destination
-	err := r.DB.Find(&destinations).Error
+	err := r.DB.Preload("TourPackages").Find(&destinations).Error
 	return destinations, err
 }
 
 func (r *DestinationRepository) GetByID(id int) (*models.Destination, error) {
 	var destination models.Destination
-	err := r.DB.First(&destination, id).Error
+
+	err := r.DB.Preload("TourPackages").First(&destination, id).Error
 	return &destination, err
 }
 

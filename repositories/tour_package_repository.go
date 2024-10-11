@@ -16,13 +16,13 @@ func NewTourPackageRepository(db *gorm.DB) TourPackageRepository {
 
 func (r *TourPackageRepository) GetAll() ([]models.TourPackage, error) {
 	var packages []models.TourPackage
-	err := r.DB.Find(&packages).Error
+	err := r.DB.Preload("Itineraries").Find(&packages).Error
 	return packages, err
 }
 
 func (r *TourPackageRepository) GetByID(id int) (*models.TourPackage, error) {
 	var paket models.TourPackage
-	err := r.DB.First(&paket, id).Error
+	err := r.DB.Preload("Itineraries").First(&paket, id).Error
 	return &paket, err
 }
 
@@ -37,6 +37,7 @@ func (r *TourPackageRepository) Update(id int, updatedPackage models.TourPackage
 		return nil, err
 	}
 	r.DB.Model(&paket).Updates(updatedPackage)
+
 	return &paket, nil
 }
 
